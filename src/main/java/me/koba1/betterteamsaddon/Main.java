@@ -31,7 +31,7 @@ import java.util.UUID;
 @Getter
 public final class Main extends JavaPlugin {
 
-    private static final String SPIGOT_RESOURCE_ID = "59773";
+    //private static final String SPIGOT_RESOURCE_ID = "59773";
     @Getter private static Main instance;
     private Map<UUID, ITeamHolder> teams;
     private BetterTeamsPlaceholders placeholders;
@@ -76,30 +76,30 @@ public final class Main extends JavaPlugin {
 
         Message.values();
 
-        String currentVersion = getDescription().getVersion();
-        new UpdateChecker(this, UpdateCheckSource.SPIGOT, SPIGOT_RESOURCE_ID)
-                .setDownloadLink(SPIGOT_RESOURCE_ID)
-                .onSuccess((senders, latestVersion) -> {
-                    if(latestVersion.equals(currentVersion)) {
-                        return;
-                    }
-                    for (CommandSender sender : senders) {
-                        this.adventure.sender(sender).sendMessage(
-                                Message.PREFIX.builder().getComponent().append(ComponentUtil.formatToComponent("&eNew update available! &6(" + latestVersion + ")"))
-                                        .append(Component.newline())
-                                        .append(ComponentUtil.formatToComponent("&eCurrent version: &e" + currentVersion))
-                                        .append(Component.newline())
-                                        .append(ComponentUtil.formatToComponent("&eDownload link: &6"))
-                        );
-                    }
-                })
-                .onFail((senders, exception) -> {
-                    for (CommandSender sender : senders) {
-                        this.adventure.sender(sender).sendMessage(Message.PREFIX.builder().getComponent().append(ComponentUtil.formatToComponent("<red>Failed check for updates.")));
-                    }
-                })
-                .setNotifyRequesters(false)
-                .checkNow();
+//        String currentVersion = getDescription().getVersion();
+//        new UpdateChecker(this, UpdateCheckSource.SPIGOT, SPIGOT_RESOURCE_ID)
+//                .setDownloadLink(SPIGOT_RESOURCE_ID)
+//                .onSuccess((senders, latestVersion) -> {
+//                    if(latestVersion.equals(currentVersion)) {
+//                        return;
+//                    }
+//                    for (CommandSender sender : senders) {
+//                        this.adventure.sender(sender).sendMessage(
+//                                Message.PREFIX.builder().getComponent().append(ComponentUtil.formatToComponent("&eNew update available! &6(" + latestVersion + ")"))
+//                                        .append(Component.newline())
+//                                        .append(ComponentUtil.formatToComponent("&eCurrent version: &e" + currentVersion))
+//                                        .append(Component.newline())
+//                                        .append(ComponentUtil.formatToComponent("&eDownload link: &6"))
+//                        );
+//                    }
+//                })
+//                .onFail((senders, exception) -> {
+//                    for (CommandSender sender : senders) {
+//                        this.adventure.sender(sender).sendMessage(Message.PREFIX.builder().getComponent().append(ComponentUtil.formatToComponent("<red>Failed check for updates.")));
+//                    }
+//                })
+//                .setNotifyRequesters(false)
+//                .checkNow();
     }
 
     public @NonNull BukkitAudiences adventure() {
