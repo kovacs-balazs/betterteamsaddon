@@ -1,0 +1,13 @@
+me.koba1.betterteamsaddon
+me.koba1.betterteamsaddon.api
+me.koba1.betterteamsaddon.api.customevents
+me.koba1.betterteamsaddon.commands
+me.koba1.betterteamsaddon.commands.argumentMatchers
+me.koba1.betterteamsaddon.commands.commands
+me.koba1.betterteamsaddon.commands.subcommands
+me.koba1.betterteamsaddon.files
+me.koba1.betterteamsaddon.listeners
+me.koba1.betterteamsaddon.messages
+me.koba1.betterteamsaddon.objects
+me.koba1.betterteamsaddon.placeholders
+me.koba1.betterteamsaddon.utils
