@@ -61,7 +61,7 @@ You can import this addon as dependency in to your project with system
 ```xml
 <dependencies>
     <dependency>
-        <groupId>com.github.kovacs-balazs</groupId>
+        <groupId>me.koba1</groupId>
         <artifactId>betterteamsaddon</artifactId>
         <version>1.0.1</version>
         <scope>system</scope>

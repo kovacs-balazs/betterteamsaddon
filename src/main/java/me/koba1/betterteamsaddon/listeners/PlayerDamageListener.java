@@ -16,7 +16,7 @@ public class PlayerDamageListener implements Listener {
 
         Player damager = null;
         if(e.getDamager() instanceof Player) damager = (Player) e.getDamager();
-        if(e.getDamager() instanceof Projectile) {
+        if(e.getDamager() instanceof Projectile && ((Projectile) e.getDamager()).getShooter() instanceof Player) {
             damager = (Player) ((Projectile) e.getDamager()).getShooter();
         }
 
