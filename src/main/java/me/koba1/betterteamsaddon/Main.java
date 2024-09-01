@@ -23,6 +23,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +37,7 @@ public final class Main extends JavaPlugin {
     private Map<UUID, ITeamHolder> teams;
     private BetterTeamsPlaceholders placeholders;
     private BukkitAudiences adventure;
+    private ConfigData configData;
 
     @Override
     public void onEnable() {
@@ -44,6 +46,9 @@ public final class Main extends JavaPlugin {
         this.teams = new HashMap<>();
 
         Metrics metrics = new Metrics(this, 23207);
+
+        if(!new File(getDataFolder(), "config.yml").exists())
+            saveResource("config.yml", false);
 
         if (getServer().getPluginManager().getPlugin("BetterTeams") == null) {
             Bukkit.getLogger().severe("This plugin requires BetterTeams installed on server.");
@@ -58,6 +63,8 @@ public final class Main extends JavaPlugin {
         }
 
         this.adventure = BukkitAudiences.create(this);
+
+        this.configData = new ConfigData();
 
         this.placeholders = new BetterTeamsPlaceholders();
         this.placeholders.register();

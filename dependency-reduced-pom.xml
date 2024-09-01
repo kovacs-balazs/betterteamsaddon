@@ -4,7 +4,7 @@
   <groupId>me.koba1</groupId>
   <artifactId>betterteamsaddon</artifactId>
   <name>BetterTeamsAddon</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <build>
     <resources>
       <resource>

@@ -30,6 +30,10 @@ public class TeamHolder implements ITeamHolder {
     @Override
     public void load() {
         FileConfiguration config = TeamData.getConfig().getFile();
+        if(config == null) {
+            TeamData.getConfig().setup();
+            config = TeamData.getConfig().getFile();
+        }
 
         String path = "teams." + this.team.getID() + ".";
         this.kills = config.getInt(path + "kills", 0);
@@ -41,6 +45,10 @@ public class TeamHolder implements ITeamHolder {
     @Override
     public void save() {
         FileConfiguration config = TeamData.getConfig().getFile();
+        if(config == null) {
+            TeamData.getConfig().setup();
+            config = TeamData.getConfig().getFile();
+        }
 
         String path = "teams." + this.team.getID() + ".";
         config.set(path + "kills", this.kills);

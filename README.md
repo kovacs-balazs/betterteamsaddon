@@ -31,6 +31,8 @@ Dependencies: [BetterTeams](https://www.spigotmc.org/resources/better-teams.1712
 | %betterteamsaddon_kills_\<team\>%   | Returns team's kills            |
 | %betterteamsaddon_deaths%           | Returns player's team's deaths  |
 | %betterteamsaddon_deaths_\<team\>%  | Returns team's deaths           |
+| %betterteamsaddon_kdr%              | Returns player's team's KDR     |
+| %betterteamsaddon_kdr_\<team\>%     | Returns team's KDR              |
 | %betterteamsaddon_damages%          | Returns player's team's damages |
 | %betterteamsaddon_damages_\<team\>% | Returns team's damages          |
 
@@ -53,9 +55,25 @@ softdepend: [ BetterTeamsAddon ]
 depend: [ BetterTeamsAddon ]
 ```
 
+#### Local file
+You can import this addon as dependency in to your project with system
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.github.kovacs-balazs</groupId>
+        <artifactId>betterteamsaddon</artifactId>
+        <version>1.0.1</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/BetterTeamsAddon-1.0.1.jar</systemPath>
+    </dependency>
+</dependencies>
+```
+
 #### Maven
 
 ```xml
+
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -67,7 +85,7 @@ depend: [ BetterTeamsAddon ]
     <dependency>
         <groupId>com.github.kovacs-balazs</groupId>
         <artifactId>betterteamsaddon</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
 </dependencies>
 ```
@@ -83,7 +101,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation 'com.github.kovacs-balazs:betterteamsaddon:1.0.0'
+    implementation 'com.github.kovacs-balazs:betterteamsaddon:1.0.1'
 }
 ```
 

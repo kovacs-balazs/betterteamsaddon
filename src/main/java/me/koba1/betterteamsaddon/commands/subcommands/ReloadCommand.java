@@ -37,7 +37,10 @@ public class ReloadCommand implements SubCommand {
 
     @Override
     public void perform(CommandSender sender, String[] args) {
+        Main.getInstance().reloadConfig();
         MessageFile.getConfig().reload();
+
+        Main.getInstance().getConfigData().reload();
         Main.getInstance().adventure().sender(sender).sendMessage(Message.CONFIG_RELOAD.builder().getComponent());
     }
 }
