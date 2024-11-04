@@ -13,6 +13,7 @@ public class Utils {
         for (Player player : Bukkit.getOnlinePlayers()) {
             Team playerTeam = Team.getTeam(player);
 
+            if(playerTeam == null) continue;
             if(!team.getID().equals(playerTeam.getID())) continue;
 
             Main.getInstance().adventure().player(player).sendMessage(comp);

@@ -1,5 +1,6 @@
 package me.koba1.betterteamsaddon;
 
+import com.booksaw.betterTeams.Team;
 import com.booksaw.betterTeams.metrics.Metrics;
 import com.jeff_media.updatechecker.UpdateCheckSource;
 import com.jeff_media.updatechecker.UpdateChecker;
@@ -24,7 +25,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -106,6 +106,13 @@ public final class Main extends JavaPlugin {
                 })
                 .setNotifyRequesters(false)
                 .checkNow();
+
+        for (String key : TeamData.getConfig().getFile().getConfigurationSection("teams").getKeys(false)) {
+            UUID uuid = UUID.fromString(key);
+            Team t = Team.getTeam(uuid);
+            if(t == null) continue;
+            new TeamHolder(t);
+        }
     }
 
     public @NonNull BukkitAudiences adventure() {

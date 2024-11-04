@@ -25,16 +25,20 @@ Dependencies: [BetterTeams](https://www.spigotmc.org/resources/better-teams.1712
 
 ### Placeholders
 
-| Placeholder                         | Description                     |
-|-------------------------------------|---------------------------------|
-| %betterteamsaddon_kills%            | Returns player's team's kills   |
-| %betterteamsaddon_kills_\<team\>%   | Returns team's kills            |
-| %betterteamsaddon_deaths%           | Returns player's team's deaths  |
-| %betterteamsaddon_deaths_\<team\>%  | Returns team's deaths           |
-| %betterteamsaddon_kdr%              | Returns player's team's KDR     |
-| %betterteamsaddon_kdr_\<team\>%     | Returns team's KDR              |
-| %betterteamsaddon_damages%          | Returns player's team's damages |
-| %betterteamsaddon_damages_\<team\>% | Returns team's damages          |
+| Placeholder                                              | Description                         |
+|----------------------------------------------------------|-------------------------------------|
+| %betterteamsaddon_kills%                                 | Returns player's team's kills       |
+| %betterteamsaddon_kills_\<team\>%                        | Returns team's kills                |
+| %betterteamsaddon_deaths%                                | Returns player's team's deaths      |
+| %betterteamsaddon_deaths_\<team\>%                       | Returns team's deaths               |
+| %betterteamsaddon_kdr%                                   | Returns player's team's KDR         |
+| %betterteamsaddon_kdr_\<team\>%                          | Returns team's KDR                  |
+| %betterteamsaddon_damages%                               | Returns player's team's damages     |
+| %betterteamsaddon_damages_\<team\>%                      | Returns team's damages              |
+| %betterteamsaddon_leaderboard_kills_\<placement\>_name%  | Kill leaderboard name               |
+| %betterteamsaddon_leaderboard_kills_\<placement\>_value% | Kill leaderboard kills              |
+| %betterteamsaddon_leaderboard_deaths_...%                | Deaths leaderboard. Usage as kills  |
+| %betterteamsaddon_leaderboard_damages_...%               | Damages leaderboard. Usage as kills |
 
 ### Developer API
 
@@ -63,9 +67,9 @@ You can import this addon as dependency in to your project with system
     <dependency>
         <groupId>me.koba1</groupId>
         <artifactId>betterteamsaddon</artifactId>
-        <version>1.0.1</version>
+        <version>1.1.0</version>
         <scope>system</scope>
-        <systemPath>${project.basedir}/BetterTeamsAddon-1.0.1.jar</systemPath>
+        <systemPath>${project.basedir}/BetterTeamsAddon-1.1.0.jar</systemPath>
     </dependency>
 </dependencies>
 ```
@@ -85,7 +89,7 @@ You can import this addon as dependency in to your project with system
     <dependency>
         <groupId>com.github.kovacs-balazs</groupId>
         <artifactId>betterteamsaddon</artifactId>
-        <version>1.0.1</version>
+        <version>1.1.0</version>
     </dependency>
 </dependencies>
 ```
@@ -101,7 +105,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation 'com.github.kovacs-balazs:betterteamsaddon:1.0.1'
+    implementation 'com.github.kovacs-balazs:betterteamsaddon:1.0.2'
 }
 ```
 
