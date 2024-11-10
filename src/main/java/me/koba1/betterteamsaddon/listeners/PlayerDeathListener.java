@@ -17,13 +17,19 @@ public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         ITeamHolder deathTeam = TeamHolder.getTeamHolder(e.getEntity());
-        if(deathTeam == null) return;
-        deathTeam.addDeaths();
+        if(deathTeam != null) {
+            deathTeam.addDeaths();
 
-        TeamDeathEvent deathEvent = new TeamDeathEvent(deathTeam, e.getEntity());
-        deathEvent.callEvent();
+            TeamDeathEvent deathEvent = new TeamDeathEvent(deathTeam, e.getEntity());
+            deathEvent.callEvent();
 
-        Team deathBetterTeam = deathTeam.getTeam();
+            if(e.getEntity().getKiller() == null) {
+                Utils.broadcastTeam(deathTeam.getTeam(), Message.TEAM_DEATH.builder().setPlayer(e.getEntity()).getComponent());
+            } else {
+                Utils.broadcastTeam(deathTeam.getTeam(), Message.TEAM_DEATH_KILLER.builder().setPlayer(e.getEntity()).setKiller(e.getEntity().getKiller()).getComponent());
+            }
+        }
+
         if(e.getEntity().getKiller() != null) {
             Player killer = e.getEntity().getKiller();
             ITeamHolder killerTeam = TeamHolder.getTeamHolder(killer);
@@ -35,9 +41,6 @@ public class PlayerDeathListener implements Listener {
 
             Team killerBetterTeam = killerTeam.getTeam();
             Utils.broadcastTeam(killerBetterTeam, Message.TEAM_KILL.builder().setPlayer(e.getEntity()).setKiller(killer).getComponent());
-            Utils.broadcastTeam(deathBetterTeam, Message.TEAM_DEATH_KILLER.builder().setPlayer(e.getEntity()).setKiller(killer).getComponent());
-        } else {
-            Utils.broadcastTeam(deathBetterTeam, Message.TEAM_DEATH.builder().setPlayer(e.getEntity()).getComponent());
         }
     }
 }
