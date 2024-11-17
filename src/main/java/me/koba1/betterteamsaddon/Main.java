@@ -22,6 +22,7 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -107,7 +108,9 @@ public final class Main extends JavaPlugin {
                 .setNotifyRequesters(false)
                 .checkNow();
 
-        for (String key : TeamData.getConfig().getFile().getConfigurationSection("teams").getKeys(false)) {
+        ConfigurationSection sec = TeamData.getConfig().getFile().getConfigurationSection("teams");
+        if(sec == null) return;
+        for (String key : sec.getKeys(false)) {
             UUID uuid = UUID.fromString(key);
             Team t = Team.getTeam(uuid);
             if(t == null) continue;
