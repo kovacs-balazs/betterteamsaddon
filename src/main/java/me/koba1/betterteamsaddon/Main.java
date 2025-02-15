@@ -39,6 +39,7 @@ public final class Main extends JavaPlugin {
     private BetterTeamsPlaceholders placeholders;
     private BukkitAudiences adventure;
     private ConfigData configData;
+    private TeamData teamData;
 
     @Override
     public void onEnable() {
@@ -70,7 +71,7 @@ public final class Main extends JavaPlugin {
         this.placeholders = new BetterTeamsPlaceholders();
         this.placeholders.register();
 
-        new TeamData("teamdata.yml");
+        teamData = new TeamData("teamdata.yml");
         new MessageFile("messages.yml");
 
         getServer().getPluginManager().registerEvents(new PlayerDamageListener(), this);
@@ -108,7 +109,7 @@ public final class Main extends JavaPlugin {
                 .setNotifyRequesters(false)
                 .checkNow();
 
-        ConfigurationSection sec = TeamData.getConfig().getFile().getConfigurationSection("teams");
+        ConfigurationSection sec = teamData.getConfig().getConfigurationSection("teams");
         if(sec == null) return;
         for (String key : sec.getKeys(false)) {
             UUID uuid = UUID.fromString(key);

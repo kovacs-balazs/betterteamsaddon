@@ -12,67 +12,71 @@ import java.io.InputStream;
 
 public class TeamData {
     private static Main m = Main.getPlugin(Main.class);
-    private static File cfg;
-    private static FileConfiguration file;
+    @Getter private File cfg;
+    @Getter private FileConfiguration config;
 
-    @Getter
-    private static TeamData config;
-    private final File ymlFile;
 
     public TeamData(String ymlFile) {
-        config = this;
-        this.ymlFile = new File(m.getDataFolder(), ymlFile);
+        this.cfg = new File(m.getDataFolder(), ymlFile);
         setup();
     }
 
+    public TeamData(String folder, String file) {
+        this.cfg = new File(m.getDataFolder(), folder + File.separator + file);
+        setup();
+    }
+
+    public TeamData(File file) {
+        this(getPath(file));
+    }
+
     public void setup() {
-        cfg = ymlFile;
+        //cfg = ymlFile;
         if (!cfg.exists()) {
             try {
-                ymlFile.getParentFile().mkdirs();
-                ymlFile.createNewFile();
-                InputStream in = m.getResource(ymlFile.getName());
+                cfg.getParentFile().mkdirs();
+                cfg.createNewFile();
+
+                InputStream in = m.getResource(getPath(cfg));
                 FileOutputStream out = new FileOutputStream(cfg);
 
-                if(in == null) return;
-                try {
-                    int n;
-                    while ((n = in.read()) != -1) {
-                        out.write(n);
-                    }
-                }
-                finally {
-                    if (in != null) {
-                        in.close();
-                    }
-                    if (out != null) {
-                        out.close();
+                if (in != null) {
+                    try {
+                        int n;
+                        while ((n = in.read()) != -1) {
+                            out.write(n);
+                        }
+                    } finally {
+                        if (in != null) {
+                            in.close();
+                        }
+                        if (out != null) {
+                            out.close();
+                        }
                     }
                 }
 
             } catch (IOException e) {
             }
         }
-        file = YamlConfiguration.loadConfiguration(cfg);
-    }
-
-    public FileConfiguration getFile() {
-        return file;
+        config = YamlConfiguration.loadConfiguration(cfg);
     }
 
     public void save() {
         try {
-            file.save(cfg);
+            config.save(cfg);
         } catch (IOException e) {
             System.out.println("Can't save language file");
         }
     }
 
     public void reload() {
-        file = YamlConfiguration.loadConfiguration(cfg);
+        config = YamlConfiguration.loadConfiguration(cfg);
     }
 
-    public static FileConfiguration get() {
-        return getConfig().getFile();
+    public static String getPath(File file) {
+        return file.getPath()
+                .replace(m.getDataFolder().getPath() + File.separator, "");
+        // .replace("\\", File.separator);
     }
 }

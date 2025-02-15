@@ -29,33 +29,21 @@ public class TeamHolder implements ITeamHolder {
 
     @Override
     public void load() {
-        FileConfiguration config = TeamData.getConfig().getFile();
-        if(config == null) {
-            TeamData.getConfig().setup();
-            config = TeamData.getConfig().getFile();
-        }
-
         String path = "teams." + this.team.getID() + ".";
-        this.kills = config.getInt(path + "kills", 0);
-        this.deaths = config.getInt(path + "deaths", 0);
-        this.damages = config.getInt(path + "damages", 0);
-        TeamData.getConfig().save();
+        this.kills = Main.getInstance().getTeamData().getConfig().getInt(path + "kills", 0);
+        this.deaths = Main.getInstance().getTeamData().getConfig().getInt(path + "deaths", 0);
+        this.damages = Main.getInstance().getTeamData().getConfig().getInt(path + "damages", 0);
+        Main.getInstance().getTeamData().save();
     }
 
     @Override
     public void save() {
-        FileConfiguration config = TeamData.getConfig().getFile();
-        if(config == null) {
-            TeamData.getConfig().setup();
-            config = TeamData.getConfig().getFile();
-        }
-
         String path = "teams." + this.team.getID() + ".";
-        config.set(path + "kills", this.kills);
-        config.set(path + "deaths", this.deaths);
-        config.set(path + "damages", this.damages);
+        Main.getInstance().getTeamData().getConfig().set(path + "kills", this.kills);
+        Main.getInstance().getTeamData().getConfig().set(path + "deaths", this.deaths);
+        Main.getInstance().getTeamData().getConfig().set(path + "damages", this.damages);
 
-        TeamData.getConfig().save();
+        Main.getInstance().getTeamData().save();
     }
 
     @Override
